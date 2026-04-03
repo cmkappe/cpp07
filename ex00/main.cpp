@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 17:53:50 by ckappe            #+#    #+#             */
-/*   Updated: 2026/04/03 20:11:47 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/04/03 20:34:05 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,16 @@ int main( void )
     
     return 0;
 }
+
+
+/* 
+    -- expected output: --
+   
+    a = 3, b = 2
+    min(a, b) = 2
+    max(a, b) = 3
+    
+    c = chaine2, d = chaine1
+    min(c, d) = chaine1
+    max(c, d) = chaine2 
+*/

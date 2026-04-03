@@ -1,27 +1,19 @@
 #pragma once
 
-#include <iostream>
-#include <cstdint>
-#include <string>
+// One function template works for any type T that supports comparisons and assignment
+// compiler creates concrete versions when you call them with int, std::string, etc
 
-
-void swap(int& a, int& b);
-int min(int a, int b);
-int max(int a, int b);
-
-
-template <typename T> T Max(T x, T y){
-    return (x > y) ? x : y;
+template <typename T> const T& max(const T& a, const T& b){
+    return (a > b) ? a : b;
 }
 
-template <typename T> T Min(T x, T y){
-    return (x < y) ? x : y;
+template <typename T> const T& min(const T& a, const T& b)
+{
+    return (a < b) ? a : b;
 }
 
-template <typename T> void swap(T& x, T& y){
-    T temp = x;
-    x = y;
-    y = temp;
+template <typename T> void swap(T& a, T& b){
+    T temp = a;
+    a = b;
+    b = temp;
 }
-   
-

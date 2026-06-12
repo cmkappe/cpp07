@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:26:49 by ckappe            #+#    #+#             */
-/*   Updated: 2026/06/12 01:07:02 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/06/12 01:07:16 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ template <typename T> Array<T> &Array<T>::operator=(const Array<T> &other) {
       _array[i] = other._array[i];
   }
   return *this;
+}
+
+// operator[] for writable arrays
+template <typename T> T &Array<T>::operator[](unsigned int index) {
+  if (index >= _len) {
+    throw std::out_of_range("Index is out of bounds!");
+  }
+  return _array[index];
+}
+
+// operator[] for read-only arrays
+template <typename T> const T &Array<T>::operator[](unsigned int index) const {
+  if (index >= _len) {
+    throw std::out_of_range("Index is out of bounds!");
+  }
+  return _array[index];
 }
 
 template <typename T> Array<T>::~Array() {

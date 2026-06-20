@@ -1,8 +1,7 @@
 #pragma once
 
 template <typename T>
-class Array
-{
+class Array {
     private:
     T *_array;
     unsigned int _len;
@@ -19,7 +18,7 @@ class Array
         unsigned int size() const;
 };
 
-    #include "Array.tpp"
+#include "Array.tpp"
 
 
 

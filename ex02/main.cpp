@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 13:11:17 by ckappe            #+#    #+#             */
-/*   Updated: 2026/06/12 00:59:27 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/10/02 22:26:02 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,39 @@
 #include "Array.hpp"
 
 #define MAX_VAL 750
+
+static const char* RESET = "\033[0m";
+static const char* BOLD = "\033[1m";
+static const char* CYAN = "\033[36m";
+static const char* GREEN = "\033[32m";
+static const char* RED = "\033[31m";
+static const char* YELLOW = "\033[33m";
+
 int main(int, char**)
 {
     bool ok = true;
 
+    std::cout << CYAN << BOLD << "\n--- Array Test ---\n" << RESET << "\n";
     // Test default constructor and size
     Array<int> empty;
     if (empty.size() != 0)
     {
-        std::cerr << "default constructor failed" << std::endl;
+        std::cerr << RED << "default constructor failed" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Default constructor creates empty array" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Default constructor creates empty array" << std::endl;
 
     // Access on empty array must throw
     try
     {
         empty[0] = 42;
-        std::cerr << "empty array out-of-bounds did not throw" << std::endl;
+        std::cerr << RED << "empty array out-of-bounds did not throw" << RESET << std::endl;
         ok = false;
     }
     catch (const std::exception&)
     {
-        std::cout << "[OK] Empty array out-of-bounds throws" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Empty array out-of-bounds throws" << std::endl;
     }
 
     // Fill both arrays with identical random values
@@ -55,11 +64,11 @@ int main(int, char**)
     // Constructor with n must report the right size
     if (numbers.size() != MAX_VAL)
     {
-        std::cerr << "size() returned wrong value" << std::endl;
+        std::cerr << RED << "size() returned wrong value" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Sized constructor sets correct size" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Sized constructor sets correct size" << std::endl;
 
     // Verify copy constructor copies all values
     Array<int> copy(numbers);
@@ -67,23 +76,23 @@ int main(int, char**)
     {
         if (copy[i] != mirror[i])
         {
-            std::cerr << "copy constructor did not copy values" << std::endl;
+            std::cerr << RED << "copy constructor did not copy values" << RESET << std::endl;
             ok = false;
             break;
         }
     }
     if (ok)
-        std::cout << "[OK] Copy constructor copies values" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Copy constructor copies values" << std::endl;
 
     // Verify deep copy: changes in original must not affect copy
     numbers[0] = -12345;
     if (copy[0] == numbers[0])
     {
-        std::cerr << "copy is not deep" << std::endl;
+        std::cerr << RED << "copy is not deep" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Copy constructor is deep" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Copy constructor is deep" << std::endl;
 
     // Verify assignment operator and deep copy semantics
     Array<int> assigned;
@@ -91,11 +100,11 @@ int main(int, char**)
     numbers[1] = -54321;
     if (assigned[1] == numbers[1])
     {
-        std::cerr << "assignment is not deep" << std::endl;
+        std::cerr << RED << "assignment is not deep" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Assignment operator is deep" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Assignment operator is deep" << std::endl;
 
     // Self-assignment should keep data intact
     int before = assigned[2];
@@ -103,42 +112,42 @@ int main(int, char**)
     assigned = *alias;
     if (assigned[2] != before)
     {
-        std::cerr << "self-assignment failed" << std::endl;
+        std::cerr << RED << "self-assignment failed" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Self-assignment keeps values intact" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Self-assignment keeps values intact" << std::endl;
 
     // Test const overload of operator[]
     const Array<int>& const_ref = assigned;
     int probe = const_ref[3];
     (void)probe;
-    std::cout << "[OK] Const operator[] works" << std::endl;
+    std::cout << GREEN << "[OK] " << RESET << "Const operator[] works" << std::endl;
 
     // Test out-of-bounds access with a negative index
     try
     {
         numbers[-2] = 0;
-        std::cerr << "negative index did not throw" << std::endl;
+        std::cerr << RED << "negative index did not throw" << RESET << std::endl;
         ok = false;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
-        std::cout << "[OK] Negative index throws" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Negative index throws" << std::endl;
     }
 
     // Test out-of-bounds access at size limit
     try
     {
         numbers[MAX_VAL] = 0;
-        std::cerr << "index == size did not throw" << std::endl;
+        std::cerr << RED << "index == size did not throw" << RESET << std::endl;
         ok = false;
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
-        std::cout << "[OK] Index == size throws" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Index == size throws" << std::endl;
     }
 
     // Also verify the template works with another type
@@ -147,15 +156,15 @@ int main(int, char**)
     words[1] = "42";
     if (words[0] != "hello" || words[1] != "42")
     {
-        std::cerr << "template with std::string failed" << std::endl;
+        std::cerr << RED << "template with std::string failed" << RESET << std::endl;
         ok = false;
     }
     else
-        std::cout << "[OK] Template works with std::string" << std::endl;
+        std::cout << GREEN << "[OK] " << RESET << "Template works with std::string" << std::endl;
 
     delete [] mirror;
     if (!ok)
         return 1;
-    std::cout << "All tests passed" << std::endl;
+    std::cout << BOLD << YELLOW << "\nAll tests passed\n" << RESET << std::endl;
     return 0;
 }

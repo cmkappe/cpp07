@@ -34,3 +34,6 @@ std::exception is thrown.
 • A member function size() that returns the number of elements in the array. This
 member function takes no parameters and must not modify the current instance.
 As usual, ensure everything works as expected and turn in a main.cpp file that con- tains your tests. */
+
+
+// doesn't need to handle std::map or std::set

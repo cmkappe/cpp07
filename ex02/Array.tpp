@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 23:26:49 by ckappe            #+#    #+#             */
-/*   Updated: 2026/06/12 01:07:16 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/10/02 22:28:21 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ template <typename T> Array<T>::~Array() {
   }
 }
 
-//  A member function size() that returns the number of elements in the array. This
-// member function takes no parameters and must not modify the current instance.
+//  A member function size() that returns number of elements in the array. This
+// member function takes no parameters and must not modify the current instance
 template <typename T> unsigned int Array<T>::size() const { return _len; }

@@ -6,7 +6,7 @@
 /*   By: ckappe <ckappe@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 17:53:50 by ckappe            #+#    #+#             */
-/*   Updated: 2026/04/03 20:34:05 by ckappe           ###   ########.fr       */
+/*   Updated: 2026/10/02 20:34:56 by ckappe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int main( void )
     std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
     std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
     
-    std::string c = "chaine1";
-    std::string d = "chaine2";
+    std::string c = "blub1";
+    std::string d = "blub2";
     
     ::swap(c, d);
     std::cout << "c = " << c << ", d = " << d << std::endl;
@@ -43,7 +43,7 @@ int main( void )
     min(a, b) = 2
     max(a, b) = 3
     
-    c = chaine2, d = chaine1
-    min(c, d) = chaine1
-    max(c, d) = chaine2 
+    c = blub2, d = blub1
+    min(c, d) = blub1
+    max(c, d) = blub2 
 */
